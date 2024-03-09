@@ -64,11 +64,22 @@ services:
     restart: always
     volumes:
       - ./prometheus_conf/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus_conf/rules:/etc/prometheus/rules
       - /data/prometheus_data:/prometheus
     ports:
       - "9090:9090"
     networks:
       apisix:
+  alertmanager:
+     image:  prom/alertmanager:latest
+     restart: always
+     ports:
+        - "9093:9093"
+     networks:
+       apisix:
+     volumes:
+          - /data/alertmanager_data:/alertmanager
+          - ./alertmanager_conf/alertmanager.yml:/etc/alertmanager/alertmanager.yml
   grafana:
     image: grafana/grafana:7.3.7
     restart: always

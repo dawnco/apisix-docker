@@ -38,3 +38,17 @@ scrape_configs:
     metrics_path: "/apisix/prometheus/metrics"
     static_configs:
       - targets: ["apisix:9091"]
+  - job_name: "mx-app-conv"
+    scrape_interval: 60s
+    metrics_path: "/api/metric/mx/app-conv"
+    static_configs:
+      - targets: ["report.analyse.atdev.top:80"]
+# alert
+rule_files:
+  - /etc/prometheus/rules/*.rules
+
+alerting:
+  alertmanagers:
+    - api_version: v2
+      static_configs:
+        - targets: ['alertmanager:9093']

@@ -1,0 +1,19 @@
+groups:
+  - name: example
+    rules:
+
+      - alert: ScrapeApiDown
+        expr: up == 0
+        for: 60s
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} 采集接口失败超过1分钟！"
+
+      - alert: app_conv_install_total
+        expr: sum(app_conv_install_total) < 500
+        for: 60s
+        labels:
+          severity: warning
+        annotations:
+          summary: "安装少于500"
