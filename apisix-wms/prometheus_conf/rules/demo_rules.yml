@@ -8,12 +8,13 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: "{{ $labels.instance }} 采集接口失败超过1分钟！"
+          summary: "Instance {{ $labels.instance }} down"
+          description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 3 minutes."
 
       - alert: app_conv_install_total
-        expr: sum(app_conv_install_total) < 500
+        expr: sum(app_conv_install_total) < 3000
         for: 60s
         labels:
           severity: warning
         annotations:
-          summary: "安装少于500"
+          summary: "安装少于 3000"

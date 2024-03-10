@@ -9,3 +9,4 @@ mkdir -p          /data/alertmanager_data
 chmod 777         /data/alertmanager_data
 
 docker-compose -p apisix up -d
+docker-compose -p apisix down

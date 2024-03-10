@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types=1);
+date_default_timezone_set("Asia/Shanghai");
 
-/**
- * @author Dawnc
- * @date   2024-03-09
- */
+file_put_contents(__DIR__ . "/temp/post_" . date("Ymd_His") . ".log", json_encode($_POST));
+
+
+file_put_contents(__DIR__ . "/temp/request_" . date("Ymd_His") . ".log", json_encode($_REQUEST));

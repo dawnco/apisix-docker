@@ -56,7 +56,7 @@ services:
     depends_on:
       - etcd
     ports:
-      - "9000:9000/tcp"
+      - "9001:9000/tcp"
     networks:
       apisix:
   prometheus:
@@ -80,6 +80,7 @@ services:
      volumes:
           - /data/alertmanager_data:/alertmanager
           - ./alertmanager_conf/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+          - ./alertmanager_conf/tpl:/etc/alertmanager/tpl
   grafana:
     image: grafana/grafana:7.3.7
     restart: always
